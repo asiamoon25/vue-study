@@ -1,20 +1,20 @@
 <template>
   <v-app>
     <default-header/>
-    <Main/>
+    <default-body/>
   </v-app>
 </template>
 <script>
 
-import Main from '@/components/Main';
 import DefaultHeader from '@/components/default/DefaultHeader';
+import DefaultBody from '@/components/default/DefaultBody';
 
 export default {
   name: 'Home',
 
   components: {
+    DefaultBody,
     DefaultHeader,
-    Main,
   },
 };
 </script>

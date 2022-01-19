@@ -1,20 +1,11 @@
 <template>
 <div>
-  <default-body/>
+  <p>메인 페이지입니다</p>
 </div>
 </template>
 <script>
-import DefaultBody from '@/components/default/DefaultBody';
-import DefaultHeader from '@/components/default/DefaultHeader';
-
 export default {
   name: 'Main',
-  components: { DefaultBody },
-
-  comments: {
-    DefaultHeader,
-    DefaultBody,
-  },
 };
 </script>
 
