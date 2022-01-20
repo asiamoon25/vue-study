@@ -8,6 +8,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "axios": "^0.25.0",
     "core-js": "^3.6.5",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
@@ -45,7 +46,10 @@
     },
     "rules": {
       "import/prefer-default-export": "off",
-      "import/extensions": [ "off" ]
+      "import/extensions": [
+        "off"
+      ],
+      "no-console": "off"
     }
   },
   "browserslist": [
