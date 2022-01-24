@@ -1,36 +1,39 @@
 <template>
   <div>
     <v-app-bar
-      color="pink"
       app
+      color="white"
+      flat
     >
-      <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
+      <v-container class="py-0 fill-height">
+        <v-avatar
+          class="mr-10"
+          color="grey darken-1"
+          size="32"
+        ></v-avatar>
 
-      <v-toolbar-title>Title</v-toolbar-title>
-    </v-app-bar>
-    <v-navigation-drawer
-      v-model="drawer"
-      absolute
-      temporary
-    >
-      <v-list
-        nav
-        dense
-      >
-        <v-list-item-group
-          v-model="group"
+        <v-btn
           v-for="(link,i) in links"
           :key="i"
+          text
+          :to="link.to"
         >
-          <v-list-item :to="link.to">
-            <v-list-item-icon>
-              <v-icon>{{link.icon}}</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>{{link.name}}</v-list-item-title>
-          </v-list-item>
-        </v-list-item-group>
-      </v-list>
-    </v-navigation-drawer>
+          {{ link.name }}
+        </v-btn>
+
+        <v-spacer></v-spacer>
+
+        <v-responsive max-width="260">
+          <v-text-field
+            dense
+            flat
+            hide-details
+            rounded
+            solo-inverted
+          ></v-text-field>
+        </v-responsive>
+      </v-container>
+    </v-app-bar>
   </div>
 </template>
 
@@ -41,8 +44,8 @@ export default {
     drawer: false,
     group: null,
     links: [
-      { icon: 'mdi-home', name: 'Home', to: '/' },
-      { icon: 'mdi-email', name: 'TEST', to: '/test' },
+      { name: 'Home', to: '/' },
+      { name: 'TEST', to: '/test/index' },
     ],
   }),
 };

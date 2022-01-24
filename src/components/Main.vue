@@ -23,7 +23,8 @@ export default {
   }),
   methods: {
     goBoard() {
-      this.$router.push('test');
+      // eslint-disable-next-line no-unused-vars
+      this.$router.push('test/index').catch((err) => {});
     },
     goWrite() {
       this.showInput = true;
