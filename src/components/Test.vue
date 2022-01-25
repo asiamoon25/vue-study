@@ -44,7 +44,6 @@
           prev-icon="mdi-menu-left"
           next-icon="mdi-menu-right"
           @input="movePage"
-          value="page"
         ></v-pagination>
       </div>
     </v-col>
@@ -57,33 +56,30 @@
 export default {
   name: 'Test',
   data: () => ({
-    bd: [],
-    page: 0,
-    pageCount: 0,
+    page: 1,
   }),
+  computed: {
+    bd() {
+      return this.$store.state.bd;
+    },
+    pageCount() {
+      return this.$store.state.pageCount;
+    },
+  },
   beforeCreate() {
     let pageNo = this.$route.params.page;
     if (pageNo === 'index') {
       pageNo = 1;
     }
-    this.axios.get('/api/board', { params: { page: pageNo } })
-      .then((res) => {
-        this.bd = res.data.boardData;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    this.axios.get('/api/board/pagination')
-      .then((res) => {
-        this.pageCount = res.data.count;
-      }).catch((err) => {
-        console.log(err);
-      });
+    this.$store.dispatch('getBoardData', pageNo);
+    this.$store.dispatch('pagination');
   },
   methods: {
     movePage(page) {
+      Number(page);
       // eslint-disable-next-line no-unused-vars
       this.$router.push(`/test/${page}`).catch((err) => {});
+      this.$store.dispatch('getBoardData', page);
     },
   },
 };
