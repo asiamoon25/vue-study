@@ -19,7 +19,7 @@ const routes = [ // 라우터 설정을 해서 url 에서 /뒤에 오는 값에 
         component: Main,
       },
       {
-        path: '/test/:page',
+        path: '/test',
         name: 'Test',
         component: () => import(/* webpackChunkName: "test" */ '@/components/Test'),
         // 청크 파일로 lazy loading 을 한다. 이렇게 하는 이유는 싱글페이지의 경우 한번 실행 시킬때 한번에 다 로딩을 하기 때문에 진입에 많은 시간이 걸린다.

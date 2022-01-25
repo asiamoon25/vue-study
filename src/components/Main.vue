@@ -24,7 +24,7 @@ export default {
   methods: {
     goBoard() {
       // eslint-disable-next-line no-unused-vars
-      this.$router.push('test/index').catch((err) => {});
+      this.$router.push('/test').catch((err) => {});
     },
     goWrite() {
       this.showInput = true;

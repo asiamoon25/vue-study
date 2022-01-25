@@ -3,6 +3,14 @@
   <v-row justify="center">
      <p>여기에다가 게시판을 만들겠습니다.</p>
   </v-row>
+  <v-row justify="end">
+    <v-col cols="4">
+      <v-text-field
+        v-model="searchText"
+        @keydown.native="search"
+      ></v-text-field>
+    </v-col>
+  </v-row>
   <v-row justify="center">
     <v-col>
       <v-simple-table>
@@ -52,34 +60,43 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 
 export default {
   name: 'Test',
   data: () => ({
-    page: 1,
+    searchText: '',
   }),
   computed: {
-    bd() {
-      return this.$store.state.bd;
-    },
-    pageCount() {
-      return this.$store.state.pageCount;
+    ...mapState('boardStore', {
+      bd: 'bd',
+      pageCount: 'pageCount',
+    }),
+    page: {
+      set() {
+        return this.$store.state['boardStore/page'];
+      },
+      get() {
+        return Number(this.$store.getters['boardStore/getPage']);
+      },
     },
   },
   beforeCreate() {
-    let pageNo = this.$route.params.page;
-    if (pageNo === 'index') {
+    let pageNo = this.$route.query.page;
+    if (pageNo === undefined || pageNo === null || pageNo === '' || pageNo === 'undefined') {
       pageNo = 1;
     }
-    this.$store.dispatch('getBoardData', pageNo);
-    this.$store.dispatch('pagination');
+    this.$store.dispatch('boardStore/getBoardData', pageNo);
+    this.$store.dispatch('boardStore/pagination');
   },
   methods: {
     movePage(page) {
-      Number(page);
       // eslint-disable-next-line no-unused-vars
-      this.$router.push(`/test/${page}`).catch((err) => {});
-      this.$store.dispatch('getBoardData', page);
+      this.$router.push(`/test?page=${Number(page)}`).catch((err) => {});
+      this.$store.dispatch('boardStore/getBoardData', Number(page));
+    },
+    search() { // 구현 중
+      this.$store.dispatch('boardStore/search', this.searchText);
     },
   },
 };

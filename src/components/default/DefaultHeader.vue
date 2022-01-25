@@ -6,12 +6,6 @@
       flat
     >
       <v-container class="py-0 fill-height">
-        <v-avatar
-          class="mr-10"
-          color="grey darken-1"
-          size="32"
-        ></v-avatar>
-
         <v-btn
           v-for="(link,i) in links"
           :key="i"
@@ -45,9 +39,12 @@ export default {
     group: null,
     links: [
       { name: 'Home', to: '/' },
-      { name: 'TEST', to: '/test/index' },
+      { name: 'TEST', to: '/test' },
     ],
   }),
+  methods: {
+
+  },
 };
 </script>
 

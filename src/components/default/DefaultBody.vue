@@ -6,26 +6,14 @@
           <v-sheet rounded="lg">
             <v-list color="transparent">
               <v-list-item
-                v-for="n in 5"
-                :key="n"
+                v-for="(side,i) in sides"
+                :key="i"
                 link
+                :to="side.link"
               >
                 <v-list-item-content>
                   <v-list-item-title>
-                    List Item {{ n }}
-                  </v-list-item-title>
-                </v-list-item-content>
-              </v-list-item>
-
-              <v-divider class="my-2"></v-divider>
-
-              <v-list-item
-                link
-                color="grey lighten-4"
-              >
-                <v-list-item-content>
-                  <v-list-item-title>
-                    Refresh
+                    {{side.name}}
                   </v-list-item-title>
                 </v-list-item-content>
               </v-list-item>
@@ -49,6 +37,12 @@
 <script>
 export default {
   name: 'DefaultBody',
+  data: () => ({
+    sides: [
+      { name: 'Home', link: '/' },
+      { name: 'Board', link: '/test/index' },
+    ],
+  }),
 };
 </script>
 
